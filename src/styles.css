@@ -1,0 +1,65 @@
+body {
+  font-family: "PT Mono", monospace;
+}
+form {
+  text-align: center;
+}
+.container {
+  position: fixed;
+  border-radius: 25px;
+  background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  margin: 50px 80px 50px 120px;
+  padding: 30px;
+}
+.current-information {
+  display: flex;
+  flex-direction: column;
+  background-color: #93e4c1;
+  opacity: 0.8;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 960px 10px 10px;
+}
+.date-container {
+  font-size: 20px;
+  font-weight: 200px;
+}
+.time-container {
+  font-size: 20px;
+  font-weight: 200px;
+}
+
+.form-check .form-check-input {
+  float: none;
+  margin-left: 0;
+}
+
+.form-switch {
+  position: relative;
+  top: -60px;
+  left: -80px;
+}
+
+.weather-forecast {
+  position: relative;
+  font-size: 14px;
+  top: -160px;
+  right: -500px;
+}
+.degree {
+  font-size: 30px;
+  margin-top: 0px;
+}
+#symbol {
+  font-size: 30px;
+}
+.my-row {
+  padding: 10px;
+}
+
+.col-sm-2 {
+  max-height: 100%;
+}
+.col-sm-2:hover {
+  background: #fff1eb;
+}
