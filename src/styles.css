@@ -63,3 +63,8 @@ form {
 .col-sm-2:hover {
   background: #fff1eb;
 }
+.name {
+  position: relative;
+  top: 620px;
+  right: -150px;
+}
