@@ -1,23 +1,18 @@
-let currentDate = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-days = days[currentDate.getDay()];
-
-function newDate() {
+function currentTime(timestamp) {
+  let currentDate = new Date(timestamp);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  days = days[currentDate.getDay()];
   let day = document.querySelector(".date-container");
   day.innerHTML = days;
-}
 
-newDate();
-
-function currentTime() {
   let hour = currentDate.getHours();
   if (hour < 10) {
     hour = `0${hour}`;
@@ -26,8 +21,7 @@ function currentTime() {
   if (minute < 10) {
     minute = `0${minute}`;
   }
-  let time = document.querySelector(".time-container");
-  time.innerHTML = `${hour}:${minute}`;
+
   let timeIndex = document.querySelector(".am-pm");
 
   if (timeIndex >= 12 && timeIndex <= 24) {
@@ -35,8 +29,8 @@ function currentTime() {
   } else {
     timeIndex.innerHTML = "PM";
   }
+  return `${hour}:${minute}`;
 }
-currentTime();
 
 //current temperature
 function showTemperature(response) {
@@ -54,6 +48,8 @@ function showTemperature(response) {
   getTemperature.innerHTML = temperature;
   document.querySelector(".humidity").innerHTML =
     response.data.main.humidity + "%";
+  let timeElement = document.querySelector(".time-container");
+  timeElement.innerHTML = currentTime(response.data.dt * 1000);
 }
 
 function searchCity(city) {
