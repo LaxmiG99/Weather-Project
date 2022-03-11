@@ -25,9 +25,9 @@ function currentTime(timestamp) {
   let timeIndex = document.querySelector(".am-pm");
 
   if (timeIndex >= 12 && timeIndex <= 24) {
-    timeIndex.innerHTML = "AM";
-  } else {
     timeIndex.innerHTML = "PM";
+  } else {
+    timeIndex.innerHTML = "AM";
   }
   return `${hour}:${minute}`;
 }
@@ -38,7 +38,6 @@ function showTemperature(response) {
   let cityName = response.data.name;
   let h1 = document.querySelector("h1");
   h1.innerHTML = cityName;
-
   let description = response.data.weather[0].description;
   description = description.charAt(0).toUpperCase() + description.slice(1);
   let par = document.querySelector(".weather-description");
@@ -48,6 +47,11 @@ function showTemperature(response) {
   getTemperature.innerHTML = temperature;
   document.querySelector(".humidity").innerHTML =
     response.data.main.humidity + "%";
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
   let timeElement = document.querySelector(".time-container");
   timeElement.innerHTML = currentTime(response.data.dt * 1000);
 }
@@ -57,26 +61,29 @@ function searchCity(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
+
 function handleClick(event) {
   event.preventDefault();
   let city = document.querySelector("#change-location").value;
   searchCity(city);
 }
+
 let button = document.querySelector(".btn-primary");
 button.addEventListener("click", handleClick);
 
 function currentPosition(position) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
-
   let apiKey = "214da328b950ce6b38a3074e133f04c4";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
+
 function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(currentPosition);
 }
+
 let current = document.querySelector(".btn-success");
 current.addEventListener("click", getCurrentLocation);
 searchCity("Winchester");
