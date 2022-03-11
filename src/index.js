@@ -24,7 +24,7 @@ function currentTime(timestamp) {
 
   let timeIndex = document.querySelector(".am-pm");
 
-  if (timeIndex >= 12 && timeIndex <= 24) {
+  if (hour >= 12 && hour <= 24) {
     timeIndex.innerHTML = "PM";
   } else {
     timeIndex.innerHTML = "AM";
@@ -47,11 +47,6 @@ function showTemperature(response) {
   getTemperature.innerHTML = temperature;
   document.querySelector(".humidity").innerHTML =
     response.data.main.humidity + "%";
-  let iconElement = document.querySelector("#icon");
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
   let timeElement = document.querySelector(".time-container");
   timeElement.innerHTML = currentTime(response.data.dt * 1000);
 }
