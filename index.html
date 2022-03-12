@@ -22,85 +22,96 @@
   </head>
   <body>
     <div class="container">
-      <form id="search-from">
-        <input type="text" id="change-location" placeholder="Change Location" />
-        <button type="button" class="btn btn-primary">Search</button>
-        <button type="button" class="btn btn-success">Current</button>
-      </form>
+      <div class="weather-app">
+        <form id="search-from">
+          <input
+            type="text"
+            id="change-location"
+            placeholder="Change Location"
+          />
+          <button type="button" class="btn btn-primary">Search</button>
+          <button type="button" class="btn btn-success">Current</button>
+        </form>
 
-      <div class="current-information">
-        <h1><strong>Winchester</strong></h1>
-        <!-- Inserts current day -->
-        <div class="date-container"></div>
-        <!-- Inserts current time -->
-        <div>
-          <span class="time-container"></span> <span class="am-pm"></span>
+        <div class="current-information">
+          <h1><strong>Winchester</strong></h1>
+          <!-- Inserts current day -->
+          <div class="date-container"></div>
+          <!-- Inserts current time -->
+          <div>
+            <span class="time-container"></span> <span class="am-pm"></span>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="weather-description">Partly Cloudy</div>
+            </div>
+            <div class="col-4">
+              <img src="#" alt="" id="icon" class="float-right" width="60px" />
+            </div>
+          </div>
+          <div>
+            <span class="degree" id="degree">17</span><span id="symbol">°</span
+            ><br />
+            <strong>H:</strong>10° <strong>L:</strong>2°
+          </div>
         </div>
-        <div class="weather-description">
-          Partly Cloudy <img src="" alt="" id="icon" width="50px" />
-        </div>
-        <div>
-          <span class="degree" id="degree">17</span><span id="symbol">°</span
-          ><br />
-          <strong>H:</strong>10° <strong>L:</strong>2°
-        </div>
-      </div>
 
-      <form id="switch-temperature">
-        <div class="form-check form-switch">
-          <span class="farenheit">°F</span>
-          <label class="celcieus">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              role="switch"
-              checked
-              id="flexSwitchCheckChecked"
-          /></label>
-          <span class="celsius">°C</span>
-        </div>
-      </form>
+        <form id="switch-temperature">
+          <div class="form-check form-switch">
+            <span class="farenheit">°F</span>
+            <label class="celcieus">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                checked
+                id="flexSwitchCheckChecked"
+            /></label>
+            <span class="celsius">°C</span>
+          </div>
+        </form>
 
-      <div class="weather-forecast">
-        <span> Precipitation: </span> <span class="precipitation"> 18% </span
-        ><br />
-        <span> Humidity: </span> <span class="humidity"> 71%</span>
-      </div>
-      <div class="row my-row">
-        <div class="col-sm-2">
-          Tomorrow <br />
-          ☀️ <br />
-          Temperature
+        <div class="weather-forecast">
+          <span> Precipitation: </span>
+          <span class="precipitation"> 18% </span><br />
+          <span> Humidity: </span> <span class="humidity"> 71%</span>
         </div>
-        <div class="col-sm-2">
-          Day <br />
-          Date <br />
-          ❄️ <br />
-          Temperature
-        </div>
-        <div class="col-sm-2">
-          Day <br />
-          Date <br />
-          ❄️ <br />
-          Temperature
-        </div>
-        <div class="col-sm-2">
-          Day <br />
-          Date <br />
-          ❄️ <br />
-          Temperature
-        </div>
-        <div class="col-sm-2">
-          Day <br />
-          Date <br />
-          ❄️ <br />
-          Temperature
-        </div>
-        <div class="col-sm-2">
-          Day <br />
-          Date <br />
-          ❄️ <br />
-          Temperature
+        <div class="row my-row">
+          <div class="col-sm-2">
+            Tomorrow <br />
+            ☀️ <br />
+            Temperature
+          </div>
+          <div class="col-sm-2">
+            Day <br />
+            Date <br />
+            ❄️ <br />
+            Temperature
+          </div>
+          <div class="col-sm-2">
+            Day <br />
+            Date <br />
+            ❄️ <br />
+            Temperature
+          </div>
+          <div class="col-sm-2">
+            Day <br />
+            Date <br />
+            ❄️ <br />
+            Temperature
+          </div>
+          <div class="col-sm-2">
+            Day <br />
+            Date <br />
+            ❄️ <br />
+            Temperature
+          </div>
+          <div class="col-sm-2">
+            Day <br />
+            Date <br />
+            ❄️ <br />
+            Temperature
+          </div>
         </div>
       </div>
     </div>
