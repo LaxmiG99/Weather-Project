@@ -49,7 +49,7 @@ function showTemperature(response) {
     response.data.main.humidity + "%";
   let timeElement = document.querySelector(".time-container");
   timeElement.innerHTML = currentTime(response.data.dt * 1000);
-  let iconElement = document.querySelector("#icon");
+  let iconElement = document.querySelector(".weather-description #icon");
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
