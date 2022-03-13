@@ -90,7 +90,7 @@ function getCurrentLocation(event) {
 let current = document.querySelector(".btn-success");
 current.addEventListener("click", getCurrentLocation);
 searchCity("Winchester");
-//Changing metric to farenheit
+//Changing metric to farenheit and back
 
 function switchTemperatureBack(event) {
   event.preventDefault();
