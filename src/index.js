@@ -42,7 +42,9 @@ function showTemperature(response) {
   description = description.charAt(0).toUpperCase() + description.slice(1);
   let par = document.querySelector(".weather-description");
   par.innerHTML = description;
-  let temperature = Math.round(response.data.main.temp);
+
+  celsiusTemperature = response.data.main.temp;
+  let temperature = Math.round(celsiusTemperature);
   let getTemperature = document.querySelector("#degree");
   getTemperature.innerHTML = temperature;
   document.querySelector(".humidity").innerHTML =
@@ -88,23 +90,24 @@ function getCurrentLocation(event) {
 let current = document.querySelector(".btn-success");
 current.addEventListener("click", getCurrentLocation);
 searchCity("Winchester");
-
 //Changing metric to farenheit
+
+function switchTemperatureBack(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#degree");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
 function switchTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#degree");
-  let farenheitTemperature = Math.round(
-    (temperatureElement.innerHTML * 9) / 5 + 32
-  );
+  let farenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
   temperatureElement.innerHTML = farenheitTemperature;
-  function switchTemperatureBack(event) {
-    event.preventDefault();
-    let temperatureElement = document.querySelector("#degree");
-    temperatureElement.innerHTML = 17;
-  }
 
   let convertBack = document.querySelector(".form-switch");
   convertBack.addEventListener("change", switchTemperatureBack);
 }
+
+let celsiusTemperature = null;
 let change = document.querySelector(".form-switch");
 change.addEventListener("change", switchTemperature);
