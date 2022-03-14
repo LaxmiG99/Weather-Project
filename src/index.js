@@ -92,22 +92,28 @@ current.addEventListener("click", getCurrentLocation);
 searchCity("Winchester");
 //Changing metric to farenheit and back
 
-function switchTemperatureBack(event) {
-  event.preventDefault();
+function switchTemperatureBack() {
   let temperatureElement = document.querySelector("#degree");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  currentUnit = "celsius";
 }
 
-function switchTemperature(event) {
-  event.preventDefault();
+function switchTemperature() {
   let temperatureElement = document.querySelector("#degree");
   let farenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
   temperatureElement.innerHTML = farenheitTemperature;
-
-  let convertBack = document.querySelector(".form-switch");
-  convertBack.addEventListener("change", switchTemperatureBack);
+  currentUnit = "fahrenheit";
 }
 
+function switchHandler(event) {
+  event.preventDefault();
+  if (currentUnit === "celsius") {
+    switchTemperature();
+  } else {
+    switchTemperatureBack();
+  }
+}
+let currentUnit = "celsius";
 let celsiusTemperature = null;
 let change = document.querySelector(".form-switch");
-change.addEventListener("change", switchTemperature);
+change.addEventListener("change", switchHandler);
