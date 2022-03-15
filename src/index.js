@@ -34,7 +34,6 @@ function currentTime(timestamp) {
 
 //current temperature
 function showTemperature(response) {
-  console.log(response);
   let cityName = response.data.name;
   let h1 = document.querySelector("h1");
   h1.innerHTML = cityName;
@@ -75,6 +74,8 @@ function handleClick(event) {
   searchCity(city);
 }
 
+let form = document.querySelector("form");
+form.addEventListener("submit", handleClick);
 let button = document.querySelector(".btn-primary");
 button.addEventListener("click", handleClick);
 
@@ -86,8 +87,7 @@ function currentPosition(position) {
   axios.get(apiUrl).then(showTemperature);
 }
 
-function getCurrentLocation(event) {
-  event.preventDefault();
+function getCurrentLocation() {
   navigator.geolocation.getCurrentPosition(currentPosition);
 }
 
