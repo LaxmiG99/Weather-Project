@@ -31,6 +31,27 @@ function currentTime(timestamp) {
   }
   return `${hour}:${minute}`;
 }
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+  let forecastHTML = `<div class="row my-row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-sm-2">
+        <div class="weather-forecast-date">${day}</div>
+        ☀️
+        <div class="weather-forecast-temeperatures">
+          <span class="weather-forecast-temperature-max"> H° </span>
+          <span class="weather-forecast-temperature-min"> L° </span>
+        </div>
+      </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
 
 //current temperature
 function showTemperature(response) {
@@ -94,6 +115,7 @@ function getCurrentLocation() {
 let current = document.querySelector(".btn-success");
 current.addEventListener("click", getCurrentLocation);
 searchCity("Winchester");
+displayForecast();
 //Changing metric to farenheit and back
 
 function switchTemperatureBack() {
