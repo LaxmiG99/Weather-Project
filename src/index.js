@@ -31,28 +31,52 @@ function currentTime(timestamp) {
   }
   return `${hour}:${minute}`;
 }
-function displayForecast() {
+function displayDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
   let forecastHTML = `<div class="row my-row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-sm-2">
-        <div class="weather-forecast-date">${day}</div>
-        ☀️
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-sm-2">
+        <div class="weather-forecast-date">${displayDay(forecastDay.dt)}</div>
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
+          alt=""
+          width="42"
+        />
         <div class="weather-forecast-temeperatures">
-          <span class="weather-forecast-temperature-max"> H° </span>
-          <span class="weather-forecast-temperature-min"> L° </span>
+          <span class="weather-forecast-temperature-max"> ${Math.round(
+            forecastDay.temp.max
+          )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temp.min
+          )}° </span>
         </div>
       </div>
   `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
   console.log(forecastHTML);
 }
 
+function getForecast(coordinates) {
+  let apiKey = "214da328b950ce6b38a3074e133f04c4";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 //current temperature
 function showTemperature(response) {
   let cityName = response.data.name;
@@ -81,6 +105,9 @@ function showTemperature(response) {
   highestTemperature.innerHTML = Math.round(response.data.main.temp_max);
   let lowestTemperature = document.querySelector(".lowest");
   lowestTemperature.innerHTML = Math.round(response.data.main.temp_min);
+  getForecast(response.data.coord);
+  console.log(response.data.coord);
+  console.log(response.data);
 }
 
 function searchCity(city) {
@@ -114,8 +141,7 @@ function getCurrentLocation() {
 
 let current = document.querySelector(".btn-success");
 current.addEventListener("click", getCurrentLocation);
-searchCity("Winchester");
-displayForecast();
+
 //Changing metric to farenheit and back
 
 function switchTemperatureBack() {
@@ -143,3 +169,4 @@ let currentUnit = "celsius";
 let celsiusTemperature = null;
 let change = document.querySelector(".form-switch");
 change.addEventListener("change", switchHandler);
+searchCity("Winchester");
