@@ -7,14 +7,18 @@ form {
 .container {
   position: fixed;
   border-radius: 25px;
-  background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  background: linear-gradient(
+    179.4deg,
+    rgb(253, 240, 233) 2.2%,
+    rgb(255, 194, 203) 96.2%
+  );
   margin: 50px 80px 50px 120px;
   padding: 30px;
 }
 .current-information {
   display: flex;
   flex-direction: column;
-  background-color: #93e4c1;
+  background-color: #ec9090;
   opacity: 0.8;
   border-radius: 10px;
   padding: 20px;
@@ -61,7 +65,7 @@ form {
   max-height: 100%;
 }
 .col-sm-2:hover {
-  background: #fff1eb;
+  background: #eed4e0;
 }
 .name {
   position: relative;

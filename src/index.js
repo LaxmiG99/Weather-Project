@@ -77,7 +77,7 @@ function getForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
-//current temperature
+
 function showTemperature(response) {
   let cityName = response.data.name;
   let h1 = document.querySelector("h1");
@@ -91,8 +91,10 @@ function showTemperature(response) {
   let temperature = Math.round(celsiusTemperature);
   let getTemperature = document.querySelector("#degree");
   getTemperature.innerHTML = temperature;
-  document.querySelector(".humidity").innerHTML =
-    response.data.main.humidity + "%";
+  let humidityElement = document.querySelector(".humidity");
+  humidityElement.innerHTML = response.data.main.humidity + "%";
+  let windElement = document.querySelector(".wind");
+  windElement.innerHTML = response.data.wind.speed + " mph";
   let timeElement = document.querySelector(".time-container");
   timeElement.innerHTML = currentTime(response.data.dt * 1000);
   let iconElement = document.querySelector("#icon");
@@ -106,8 +108,6 @@ function showTemperature(response) {
   let lowestTemperature = document.querySelector(".lowest");
   lowestTemperature.innerHTML = Math.round(response.data.main.temp_min);
   getForecast(response.data.coord);
-  console.log(response.data.coord);
-  console.log(response.data);
 }
 
 function searchCity(city) {
@@ -141,8 +141,6 @@ function getCurrentLocation() {
 
 let current = document.querySelector(".btn-success");
 current.addEventListener("click", getCurrentLocation);
-
-//Changing metric to farenheit and back
 
 function switchTemperatureBack() {
   let temperatureElement = document.querySelector("#degree");
